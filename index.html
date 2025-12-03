@@ -1,25 +1,11 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-touch-fullscreen" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="MobileOptimized" content="320">
-  <title>官方平台</title>
+<html><head>
+  <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="yes" name="apple-touch-fullscreen">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="320" name="MobileOptimized">
+  <title></title>
   <style>
-    /* 全局容器样式 */
-    .content {
-      height: 100vh;
-      width: 100vw;
-      position: fixed;
-      left: 0;
-      top: 0;
-      border: none;
-    }
-
-    /* 你的加载动画样式（完全保留） */
     .container {
         width: 100px;
         height: 100px;
@@ -34,6 +20,7 @@
         width: 15px;
         height: 15px;
         border-radius: 50%;
+        background-color: #000;
         position: absolute;
         top: 0;
         bottom: 0;
@@ -42,81 +29,108 @@
         margin: auto;
     }
 
-    .dot-3 { background-color: #f74d75; animation: dot-3-move 2s ease infinite; }
-    .dot-2 { background-color: #10beae; animation: dot-2-move 2s ease infinite; }
-    .dot-1 { background-color: #ffe386; animation: dot-1-move 2s ease infinite; }
+    .dot-3 { background-color: #9b59b6; }
+    .dot-2 { background-color: #a683cc; }
+    .dot-1 { background-color: #d7bde2; }
+
+    .dot-3 {
+        animation: dot-3-move 2s ease infinite;
+    }
+    .dot-2 {
+        animation: dot-2-move 2s ease infinite;
+    }
+    .dot-1 {
+        animation: dot-1-move 2s ease infinite;
+    }
 
     @keyframes dot-3-move {
-      20% { transform: scale(1) }
-      45% { transform: translateY(-18px) scale(.45) }
-      60% { transform: translateY(-25px) scale(.45) }
-      80% { transform: translateY(-25px) scale(.45) }
-      100% { transform: translateY(0px) scale(1) }
+        20% { transform: scale(1) }
+        45% { transform: translateY(-18px) scale(.45) }
+        60% { transform: translateY(-25px) scale(.45) }
+        80% { transform: translateY(-25px) scale(.45) }
+        100% { transform: translateY(0px) scale(1) }
     }
 
     @keyframes dot-2-move {
-      20% { transform: scale(1) }
-      45% { transform: translate(-16px, 12px) scale(.45) }
-      60% { transform: translate(-20px, 15px) scale(.45) }
-      80% { transform: translate(-20px, 15px) scale(.45) }
-      100% { transform: translateY(0px) scale(1) }
+        20% { transform: scale(1) }
+        45% { transform: translate(-16px, 12px) scale(.45) }
+        60% { transform: translate(-20px, 15px) scale(.45) }
+        80% { transform: translate(-20px, 15px) scale(.45) }
+        100% { transform: translateY(0px) scale(1) }
     }
 
     @keyframes dot-1-move {
-      20% { transform: scale(1) }
-      45% { transform: translate(16px, 12px) scale(.45) }
-      60% { transform: translate(20px, 15px) scale(.45) }
-      80% { transform: translate(20px, 15px) scale(.45) }
-      100% { transform: translateY(0px) scale(1) }
+        20% { transform: scale(1) }
+        45% { transform: translate(16px, 12px) scale(.45) }
+        60% { transform: translate(20px, 15px) scale(.45) }
+        80% { transform: translate(20px, 15px) scale(.45) }
+        100% { transform: translateY(0px) scale(1) }
     }
 
     @keyframes rotate-move {
-      55% { transform: translate(-50%, -50%) rotate(0deg) }
-      80% { transform: translate(-50%, -50%) rotate(360deg) }
-      100% { transform: translate(-50%, -50%) rotate(360deg) }
+        55% { transform: translate(-50%, -50%) rotate(0deg) }
+        80% { transform: translate(-50%, -50%) rotate(360deg) }
+        100% { transform: translate(-50%, -50%) rotate(360deg) }
+    }
+
+    .content {
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        left: -2px;
+        top: -2px;
     }
   </style>
-</head>
+<style type="text/css" id="__via_marker__"></style></head> 
 <body>
-  <!-- 你的加载动画容器（替换原警告） -->
-  <div class="container">
+<div class="container" id="container"> 
     <div class="dot dot-1"></div>
     <div class="dot dot-2"></div>
     <div class="dot dot-3"></div>
-  </div>
+</div>
 
-  <script>
-    // 原有逻辑完全保留（URL解析、加载、隐藏动画等）
-    var urlParams = new URLSearchParams(window.location.search);
-    var encodedParam = urlParams.get('c');
-    var tureurl = atob(encodedParam);
-    if (tureurl.includes("http")) {
-      var square = document.querySelector(".container");
-      setTimeout(function() {
-        square.style.display = "none";
-      }, 1500);
-      var html='<iframe class="content" onload="bindMouseWhee(this)" src='+tureurl+'></iframe>';
-      document.writeln(html);
-      console.log(tureurl);
-    } else {
-      console.log("nourls");
-    }
+<script>
+// 淇鍙橀噺鑾峰彇閫昏緫
+const urlParams = new URLSearchParams(window.location.search);
+const encodedParam = urlParams.get('c');
+const decodedUrl = atob(encodedParam || '');
 
-    // 原鼠标滚轮绑定逻辑保留
-    var firefox = navigator.userAgent.indexOf('Firefox') != -1;
-    function MouseWheel(e,doc){
-      e.preventDefault && e.preventDefault(),e.returnValue = false;
-      var up = firefox && e.detail < 0 || e.wheelDelta > 0;
-      doc.body.scrollTop = doc.documentElement.scrollTop += up?-50:50;
+if (decodedUrl.includes("http")) {
+    const container = document.getElementById("container"); // 閫氳繃id鑾峰彇
+    setTimeout(() => container.style.display = "none", 1500);
+    
+    // 鏀圭敤DOM鎿嶄綔鏇夸唬document.writeln
+    const iframe = document.createElement('iframe');
+    iframe.className = 'content';
+    iframe.onload = () => bindMouseWhee(iframe); // 淇onload鎷煎啓
+    iframe.src = decodedUrl;
+    document.body.appendChild(iframe);
+} else {
+    console.log("nourls");
+}
+</script>
+
+<script>
+const isFirefox = navigator.userAgent.includes('Firefox');
+function handleMouseWheel(e, doc) {
+    e.preventDefault();
+    e.returnValue = false;
+    const isScrollingUp = isFirefox ? e.detail < 0 : e.wheelDelta > 0;
+    doc.documentElement.scrollTop += isScrollingUp ? -50 : 50;
+}
+
+function bindMouseWhee(iframe) {
+    try {
+        const doc = iframe.contentWindow.document;
+        if (isFirefox) {
+            doc.addEventListener('DOMMouseScroll', e => handleMouseWheel(e, doc));
+        } else {
+            doc.onmousewheel = e => handleMouseWheel(e || iframe.contentWindow.event, doc);
+        }
+    } catch (e) {
+        console.error('璺ㄥ煙鏃犳硶缁戝畾婊氳疆浜嬩欢:', e);
     }
-    function bindMouseWhee(ifr){
-      try{
-        var doc = ifr.contentWindow.document;
-        firefox?doc.addEventListener('DOMMouseScroll',function(e){MouseWheel(e,doc)},false):(doc.onmousewheel = function(e){MouseWheel(e||ifr.contentWindow.event,doc)});
-      }catch(e){
-        alert('跨域无法获取iframe加载document'+e);
-      }
-    }
-  </script>
-</body>
-</html>
+}
+</script>
+
+</body></html>
